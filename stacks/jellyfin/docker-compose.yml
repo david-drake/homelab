@@ -1,9 +1,9 @@
 version: "3"
-name: jellyfin
+name: jellyfin2
 
 services:
-  jellyfin:
-    container_name: jellyfin
+  jellyfin2:
+    container_name: jellyfin2
     image: jellyfin/jellyfin:latest
 
     labels:
@@ -25,7 +25,11 @@ services:
       - $MEDIA_DIR:/data,readonly
 
     network_mode: "host"
-        
+    
+    env_file:
+      - .env.template
+      - ../../.env
+
     environment:
       TZ: ${TZ}
       PGID: ${PGID}
