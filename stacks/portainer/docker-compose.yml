@@ -31,7 +31,3 @@ services:
 
     environment:
       TZ: ${TZ}
-
-    extends:
-      file: ${TEMPLATES_PATH}
-      service: default

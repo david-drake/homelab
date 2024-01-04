@@ -20,10 +20,6 @@ services:
       - WATCHTOWER_HTTP_API_TOKEN=${WATCHTOWER_HTTP_API_TOKEN}
       - WATCHTOWER_SCHEDULE=${WATCHTOWER_SCHEDULE}
 
-    extends:
-      file: ${TEMPLATES_PATH}
-      service: default
-
     image: "containrrr/watchtower:latest"
 
     labels:

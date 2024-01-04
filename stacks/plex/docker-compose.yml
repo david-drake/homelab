@@ -31,14 +31,12 @@ services:
       TZ: ${TZ}
       PGID: ${PGID}
       PUID: ${PUID}
-      PLEX_GID: 1000
-      PLEX_UID: 1000
-      hostname: "drake-plex"
-      ALLOWED_NETWORKS: "192.168.10.0/24,192.168.50.0/24,192.168.12.0/24,192.168.11.0/24"
+      PLEX_GID: ${PLEX_GID}
+      PLEX_UID: ${PLEX_UID}
+      hostname: ${PLEX_HOSTNAME}
+      ALLOWED_NETWORKS: {PLEX_ALLOWED_NETWORKS}
 
-    extends:
-      file: ${TEMPLATES_PATH}
-      service: default
+    restart: always
 
   tautulli:
     container_name: tautulli
@@ -63,7 +61,4 @@ services:
       PGID: ${PGID}
       PUID: ${PUID}
 
-    extends:
-      file: ${TEMPLATES_PATH}
-      service: default
-
+    restart: unless-stopped

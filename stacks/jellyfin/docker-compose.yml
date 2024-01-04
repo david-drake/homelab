@@ -1,9 +1,9 @@
 version: "3"
-name: jellyfin2
+name: jellyfin
 
 services:
-  jellyfin2:
-    container_name: jellyfin2
+  jellyfin:
+    container_name: jellyfin
     image: jellyfin/jellyfin:latest
 
     labels:
@@ -26,15 +26,9 @@ services:
 
     network_mode: "host"
     
-    env_file:
-      - .env.template
-      - ../../.env
-
     environment:
       TZ: ${TZ}
       PGID: ${PGID}
       PUID: ${PUID}
 
-        #    extends:
-        #      file: ${TEMPLATES_PATH}
-        #      service: default
+    restart: unless-stopped
