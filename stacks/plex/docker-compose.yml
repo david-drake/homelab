@@ -1,0 +1,69 @@
+version: "3"
+name: media-players
+
+services:
+  plex:
+    container_name: plex
+    image: linuxserver/plex:latest
+
+    labels:
+      homepage.description: "Media Player for Entertainment"
+      homepage.group: "Media"
+      homepage.href: "https://plex.lab.drake.cloud"
+      homepage.icon: "plex.png"
+      homepage.name: "Plex"
+      homepage.weight: "-100"
+      homepage.widget.key: ${PLEX_API_KEY}
+      homepage.widget.type: "plex"
+      homepage.widget.url: "https://plex.lab.drake.cloud"
+
+    volumes:
+      - $CONTAINER_APPS_DIR/plex/transcode:/transcode
+      - $CONTAINER_APPS_DIR/plex:/config
+      - $MEDIA_DIR:/data
+
+    devices:
+      - "/dev/dri:/dev/dri"
+
+    network_mode: "host"
+
+    environment:
+      TZ: ${TZ}
+      PGID: ${PGID}
+      PUID: ${PUID}
+      PLEX_GID: 1000
+      PLEX_UID: 1000
+      hostname: "drake-plex"
+      ALLOWED_NETWORKS: "192.168.10.0/24,192.168.50.0/24,192.168.12.0/24,192.168.11.0/24"
+
+    extends:
+      file: ${TEMPLATES_PATH}
+      service: default
+
+  tautulli:
+    container_name: tautulli
+    image: linuxserver/tautulli:latest
+
+    labels:
+      homepage.description: "Plex Stats"
+      homepage.group: "Media"
+      homepage.href: "https://plexstats.lab.drake.cloud"
+      homepage.icon: "tautulli.svg"
+      homepage.name: "Tautulli"
+
+    ports:
+      - "8182:8181/tcp"
+
+    volumes:
+      - $CONTAINER_APPS_DIR/plex/Library/Application Support/Plex Media Server/Logs:/logs
+      - $CONTAINER_APPS_DIR/tautulli:/config
+
+    environment:
+      TZ: ${TZ}
+      PGID: ${PGID}
+      PUID: ${PUID}
+
+    extends:
+      file: ${TEMPLATES_PATH}
+      service: default
+

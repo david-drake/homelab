@@ -1,0 +1,226 @@
+version: "3"
+name: media-finders
+
+services:
+  sonarr:
+    container_name: sonarr
+    image: linuxserver/sonarr:latest
+
+    labels:
+      homepage.description: "TV Show Finder"
+      homepage.group: "Media"
+      homepage.href: "https://tv.lab.drake.cloud"
+      homepage.icon: "sonarr.svg"
+      homepage.name: "Sonarr"
+      homepage.widget.key: ${SONARR_API_KEY}
+      homepage.widget.type: "sonarr"
+      homepage.widget.url: "https://tv.lab.drake.cloud"
+
+    ports:
+      - "8989:8989/tcp"
+
+    volumes:
+      - $CONTAINER_APPS_DIR/sonarr:/config
+      - $MEDIA_DIR/tv:/tv
+      - $MEDIA_DIR/torrent-complete/tv:/completed/tv
+      - $MEDIA_DIR/torrent-dl/tv:/downloads
+
+    environment:
+      TZ: ${TZ}
+      PGID: ${PGID}
+      PUID: ${PUID}
+
+    extends:
+      file: ${TEMPLATES_PATH}
+      service: default
+
+  radarr:
+    container_name: radarr
+    image: linuxserver/radarr:latest
+
+    labels:
+      homepage.description: "Movie Finder"
+      homepage.group: "Media"
+      homepage.href: "https://movies.lab.drake.cloud"
+      homepage.icon: "radarr-light.png"
+      homepage.name: "Radarr"
+      homepage.widget.key: ${RADARR_API_KEY}
+      homepage.widget.type: "radarr"
+      homepage.widget.url: "https://movies.lab.drake.cloud"
+
+    ports:
+      - "7878:7878/tcp"
+
+    volumes:
+      - $CONTAINER_APPS_DIR/radarr:/config
+      - $MEDIA_DIR/movies:/movies
+      - $MEDIA_DIR/torrent-complete/movies:/completed/movies
+      - $MEDIA_DIR/torrent-dl/movies:/downloads
+
+    environment:
+      TZ: ${TZ}
+      PGID: ${PGID}
+      PUID: ${PUID}
+
+    extends:
+      file: ${TEMPLATES_PATH}
+      service: default
+
+  prowlarr:
+    container_name: prowlarr
+    image: linuxserver/prowlarr:develop
+
+    labels:
+      homepage.description: "Torrent Downloader"
+      homepage.group: "Media"
+      homepage.href: "https://prowlarr.lab.drake.cloud/"
+      homepage.icon: "prowlarr.png"
+      homepage.name: "Prowlarr"
+      homepage.weight: "-10"
+      homepage.widget.key: ${PROWLARR_API_KEY} 
+      homepage.widget.type: "prowlarr"
+      homepage.widget.url: "https://prowlarr.lab.drake.cloud"
+
+    ports:
+      - "9696:9696/tcp"
+
+    volumes:
+      - $CONTAINER_APPS_DIR/prowlarr:/config
+
+    environment:
+      TZ: ${TZ}
+      PGID: ${PGID}
+      PUID: ${PUID}
+
+    extends:
+      file: ${TEMPLATES_PATH}
+      service: default
+
+  bazarr:
+    container_name: bazarr
+    image: linuxserver/bazarr:latest
+
+    labels:
+      homepage.description: "Subtitles"
+      homepage.group: "Media"
+      homepage.href: "https://subtitles.lab.drake.cloud"
+      homepage.icon: "bazarr.png"
+      homepage.name: "Bazarr"
+      homepage.widget.fields: "[\"missingEpisodes\", \"missingMovies\"]"
+      homepage.widget.key: ${BAZARR_API_KEY}
+      homepage.widget.type: "bazarr"
+      homepage.widget.url: "https://subtitles.lab.drake.cloud"
+
+    ports:
+      - "6767:6767/tcp"
+
+    volumes:
+      - $CONTAINER_APPS_DIR/bazarr:/config
+      - $MEDIA_DIR/tv:/tv
+      - $MEDIA_DIR/movies:/movies
+
+    environment:
+      TZ: ${TZ}
+      PGID: ${PGID}
+      PUID: ${PUID}
+
+    extends:
+      file: ${TEMPLATES_PATH}
+      service: default
+
+  readarr:
+    container_name: readarr
+    image: linuxserver/readarr:develop
+
+    labels:
+      homepage.description: "Book Finder"
+      homepage.group: "Media"
+      homepage.href: "https://books.lab.drake.cloud"
+      homepage.icon: "readarr.svg"
+      homepage.name: "Readarr"
+      homepage.widget.key: ${READARR_API_KEY}
+      homepage.widget.type: "readarr"
+      homepage.widget.url: "https://books.lab.drake.cloud"
+
+    ports:
+      - "8787:8787/tcp"
+
+    volumes:
+      - $CONTAINER_APPS_DIR/readarr:/config
+      - $MEDIA_DIR/audiobooks:/audiobooks
+      - $MEDIA_DIR/books:/books
+      - $MEDIA_DIR/torrent-complete/movies:/completed/movies
+      - $MEDIA_DIR/torrent-dl/audiobooks:/downloads-audiobooks
+      - $MEDIA_DIR/torrent-dl/books:/downloads-books
+      - $MEDIA_DIR/torrent-dl:/downloads
+
+    environment:
+      TZ: ${TZ}
+      PGID: ${PGID}
+      PUID: ${PUID}
+
+    extends:
+      file: ${TEMPLATES_PATH}
+      service: default
+
+  overseerr:
+    container_name: overseerr
+    image: linuxserver/overseerr:latest
+
+    labels:
+      homepage.description: "Media Manager for TV, Movies, etc"
+      homepage.group: "Media"
+      homepage.href: "https://requests.lab.drake.cloud"
+      homepage.icon: "overseerr.png"
+      homepage.name: "Overseer"
+      homepage.weight: "-50"
+      homepage.widget.fields: "[\"pending\", \"processing\",  \"approved\"]"
+      homepage.widget.key: ${OVERSEERR_API_KEY}
+      homepage.widget.type: "overseerr"
+      homepage.widget.url: "https://requests.lab.drake.cloud"
+
+    ports:
+      - "5055:5055/tcp"
+
+    volumes:
+      - $CONTAINER_APPS_DIR/overseerr:/app/config
+
+    environment:
+      TZ: ${TZ}
+      PGID: ${PGID}
+      PUID: ${PUID}
+
+    extends:
+      file: ${TEMPLATES_PATH}
+      service: default
+
+  qbittorrent:
+    container_name: qbittorrent
+    image: linuxserver/qbittorrent:latest
+
+    labels:
+      homepage.description: "Torrent Downloader"
+      homepage.group: "Media"
+      homepage.href: "https://downloader.lab.drake.cloud"
+      homepage.icon: "qbittorrent.png"
+      homepage.name: "QBittorrent"
+      homepage.widget.type: "qbittorrent"
+      homepage.widget.url: "https://downloader.lab.drake.cloud"
+
+    ports:
+      - "6881:6881/tcp"
+      - "6881:6881/udp"
+      - "8090:8090/tcp"
+
+    volumes:
+      - $CONTAINER_APPS_DIR/qbittorrent/config:/config
+      - $MEDIA_DIR/torrent-dl:/downloads
+
+    environment:
+      TZ: ${TZ}
+      PGID: ${PGID}
+      PUID: ${PUID}
+
+    extends:
+      file: ${TEMPLATES_PATH}
+      service: default

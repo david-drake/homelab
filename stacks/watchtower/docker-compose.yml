@@ -1,0 +1,49 @@
+version: "3"
+name: watchtower
+
+services:
+  watchtower:
+    command:
+      - "--cleanup"
+      - "--include-restarting"
+      - "--debug"
+      - "--http-api-update"
+      - "--http-api-metrics"
+      - "--http-api-periodic-polls"
+
+    container_name: "watchtower"
+
+    environment:
+      - TZ=${TZ}
+      - WATCHTOWER_NOTIFICATIONS=${WATCHTOWER_NOTIFICATIONS}
+      - WATCHTOWER_NOTIFICATION_URL=${WATCHTOWER_NOTIFICATION_URL}
+      - WATCHTOWER_HTTP_API_TOKEN=${WATCHTOWER_HTTP_API_TOKEN}
+      - WATCHTOWER_SCHEDULE=${WATCHTOWER_SCHEDULE}
+
+    extends:
+      file: ${TEMPLATES_PATH}
+      service: default
+
+    image: "containrrr/watchtower:latest"
+
+    labels:
+      com.centurylinklabs.watchtower.enable: "true"
+      homepage.description: "Docker Container Updater"
+      homepage.group: "Infrastructure"
+      homepage.icon: "watchtower.svg"
+      homepage.name: "Watchtower"
+      homepage.href: "https://watchtower.lab.drake.cloud"
+      homepage.weight: "-4"
+      homepage.widget.type: "watchtower"
+      homepage.widget.url: "https://watchtower.lab.drake.cloud"
+      homepage.widget.key: ${WATCHTOWER_HTTP_API_TOKEN}
+
+    network_mode: "bridge"
+
+    ports:
+      - '8083:8080'
+
+    restart: "always"
+
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"

@@ -1,0 +1,26 @@
+### Include all child Docker Compose files
+### Whenever a service needs to be removed, comment out a line for relevant service
+
+include:
+  - path:
+      - ${INCLUDE_PATH}/portainer/docker-compose.yml
+
+  - path:
+      - ${INCLUDE_PATH}/watchtower/docker-compose.yml
+    env_file: ${INCLUDE_PATH}/watchtower/.env
+
+  - path:
+      - ${INCLUDE_PATH}/media-finders/docker-compose.yml
+    env_file: ${INCLUDE_PATH}/media-finders/.env
+
+  - path:
+      - ${INCLUDE_PATH}/plex/docker-compose.yml
+    env_file: ${INCLUDE_PATH}/plex/.env
+
+  - path:
+      - ${INCLUDE_PATH}/jellyfin/docker-compose.yml
+    env_file: ${INCLUDE_PATH}/jellyfin/.env
+
+  - path:
+      - ${INCLUDE_PATH}/npm/docker-compose.yml
+    env_file: ${INCLUDE_PATH}/npm/.env

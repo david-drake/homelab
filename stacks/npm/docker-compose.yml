@@ -1,0 +1,60 @@
+version: "3"
+services:
+  npm:
+    container_name: npm
+    image: "jc21/nginx-proxy-manager:latest"
+
+    restart: always
+
+    depends_on:
+      - npm_db
+
+    ports:
+      - "80:80"
+      - "81:81"
+      - "443:443"
+
+    environment:
+      DB_MYSQL_HOST: "npm_db"
+      DB_MYSQL_PORT: 3306
+      DB_MYSQL_USER: ${MYSQL_USER}
+      DB_MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      DB_MYSQL_NAME: ${MYSQL_DATABASE}
+      TZ: ${TZ}
+      PGID: 1000
+      PUID: 1000
+
+    volumes:
+      - $CONTAINER_APPS_DIR/npm/data:/data
+      - $CONTAINER_APPS_DIR/npm/letsencrypt:/etc/letsencrypt
+
+    labels:
+      homepage.description: "Web Server"
+      homepage.name: "NGINX Proxy Manager"
+      homepage.group: "Infrastructure"
+      homepage.href: "https://proxy.lab.drake.cloud"
+      homepage.icon: "nginx-proxy-manager.png"
+      homepage.weight: "-20"
+      homepage.widget.type: "npm"
+      homepage.widget.url: "https://proxy.lab.drake.cloud"
+      homepage.widget.username: ${NPM_HOMEPAGE_WIDGET_USER}
+      homepage.widget.password: ${NPM_HOMEPAGE_WIDGET_PW}
+
+
+  npm_db:
+    container_name: npm_db
+    image: "jc21/mariadb-aria:latest"
+
+    restart: always
+
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      TZ: ${TZ}
+      PGID: ${PGID}
+      PUID: ${PUID}
+
+    volumes:
+      - $CONTAINER_APPS_DIR/npm_db:/var/lib/mysql

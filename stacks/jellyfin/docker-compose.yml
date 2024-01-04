@@ -1,0 +1,36 @@
+version: "3"
+name: jellyfin
+
+services:
+  jellyfin:
+    container_name: jellyfin
+    image: jellyfin/jellyfin:latest
+
+    labels:
+      homepage.description: "Media Player"
+      homepage.group: "Media"
+      homepage.href: "https://jellyfin.lab.drake.cloud"
+      homepage.icon: "jellyfin.png"
+      homepage.name: "Jellyfin"
+      homepage.widget.enableBlocks: "true"
+      homepage.widget.enableNowPlaying: "false"
+      homepage.widget.fields: "[\"movies\", \"series\", \"episodes\"]"
+      homepage.widget.key: ${JELLYFIN_API_KEY}
+      homepage.widget.type: "jellyfin"
+      homepage.widget.url: "https://jellyfin.lab.drake.cloud"
+
+    volumes:
+      - $CONTAINER_APPS_DIR/jellyfin/cache:/cache
+      - $CONTAINER_APPS_DIR/jellyfin/config:/config
+      - $MEDIA_DIR:/data,readonly
+
+    network_mode: "host"
+        
+    environment:
+      TZ: ${TZ}
+      PGID: ${PGID}
+      PUID: ${PUID}
+
+    extends:
+      file: ${TEMPLATES_PATH}
+      service: default

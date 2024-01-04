@@ -1,0 +1,37 @@
+version: "3"
+
+name: portainer
+
+services:
+  portainer:
+    container_name: portainer
+    image: portainer/portainer-ce:latest
+
+    labels:
+      homepage.name: "Portainer"
+      homepage.description: "Docker Container Management"
+      homepage.group: "Infrastructure"
+      homepage.icon: "portainer.svg"
+      homepage.href: "https://portainer.lab.drake.cloud"
+      homepage.weight: "-100"
+      homepage.widget.type: "portainer"
+      homepage.widget.url: "https://portainer.lab.drake.cloud"
+      homepage.widget.env: "1"
+      homepage.widget.key: ${PORTAINER_API_KEY}
+
+    ports:
+      - "8000:8000/tcp"
+      - "9443:9443/tcp"
+
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - $CONTAINER_APPS_DIR/portainer:/data
+
+    restart: unless-stopped
+
+    environment:
+      TZ: ${TZ}
+
+    extends:
+      file: ${TEMPLATES_PATH}
+      service: default
