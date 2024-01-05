@@ -24,6 +24,9 @@ services:
       - $CONTAINER_APPS_DIR/jellyfin/config:/config
       - $MEDIA_DIR/media:/data:ro
 
+    devices:
+      - /dev/dri/renderD128:/dev/dri/renderD128
+
     network_mode: "host"
     
     environment:
