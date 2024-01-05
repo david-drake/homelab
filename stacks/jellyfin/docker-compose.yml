@@ -22,7 +22,7 @@ services:
     volumes:
       - $CONTAINER_APPS_DIR/jellyfin/cache:/cache
       - $CONTAINER_APPS_DIR/jellyfin/config:/config
-      - $MEDIA_DIR:/data,readonly
+      - $MEDIA_DIR:/data:ro
 
     network_mode: "host"
     
