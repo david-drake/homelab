@@ -1,0 +1,30 @@
+version: "3"
+name: netboot
+
+services:
+  netboot:
+    container_name: netboot
+    image: linuxserver/netbootxyz:latest
+
+    labels:
+      homepage.description: "PXE Boot"
+      homepage.group: "Infrastructure"
+      homepage.href: "https://pxe.lab.drake.cloud"
+      homepage.icon: "netboot.png"
+      homepage.name: "Netboot.xyz"
+
+    ports:
+      - "3000:3000/tcp"
+      - "69:69/udp"
+      - "8085:80/tcp"
+
+    volumes:
+      - $CONTAINER_APPS_DIR/netboot/assets:/assets
+      - $CONTAINER_APPS_DIR/netboot/config:/config
+
+    environment:
+      TZ: ${TZ}
+      PGID: ${PGID}
+      PUID: ${PUID}
+
+    restart: unless-stopped

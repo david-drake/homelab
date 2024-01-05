@@ -1,0 +1,76 @@
+version: "3"
+name: speedtest
+
+services:
+  openspeedtest:
+    container_name: openspeedtest
+    image: openspeedtest/latest:latest
+
+    labels:
+      homepage.description: "Test internet speed"
+      homepage.group: "Infrastructure"
+      homepage.href: "https://speedtest.lab.drake.cloud"
+      homepage.icon: "openspeedtest.png"
+      homepage.name: "Speed Test"
+
+    ports:
+      - "8084:3000/tcp"
+
+    environment:
+      TZ: ${TZ}
+      PGID: ${PGID}
+      PUID: ${PUID}
+
+    restart: unless-stopped
+
+  speedtest-tracker:
+    container_name: speedtest-tracker
+    image: ghcr.io/alexjustesen/speedtest-tracker:latest
+
+    labels:
+      homepage.description: "Internet Speed History"
+      homepage.group: "Infrastructure"
+      homepage.href: "https://speedtest-tracker.lab.drake.cloud"
+      homepage.icon: "librespeed.png"
+      homepage.name: "Speed Test History"
+
+    ports:
+      - "8082:80/tcp"
+
+    depends_on:
+      - speedtest-tracker-db
+
+    volumes:
+      - $CONTAINER_APPS_DIR/speedtest-tracker:/config
+
+    environment:
+      TZ: ${TZ}
+      PGID: ${PGID}
+      PUID: ${PUID}
+      DB_CONNECTION: ${DB_CONNECTION}
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_DATABASE: ${DB_DATABASE}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+
+    restart: unless-stopped
+
+
+  speedtest-tracker-db:
+    container_name: speedtest-tracker-db
+    image: "jc21/mariadb-aria:latest"
+
+    restart: always
+
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      TZ: ${TZ}
+      PGID: ${PGID}
+      PUID: ${PUID}
+
+    volumes:
+      - $CONTAINER_APPS_DIR/speedtest-tracker-db/database:/var/lib/mysql

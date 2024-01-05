@@ -1,0 +1,55 @@
+version: "3"
+name: unifi-controller
+
+services:
+  unifi-controller:
+    container_name: unifi-controller
+    image: linuxserver/unifi-network-application:latest
+
+    labels:
+      homepage.description: "Wireless Manager"
+      homepage.group: "Infrastructure"
+      homepage.href: "https://wireless.lab.drake.cloud"
+      homepage.icon: "unifi.svg"
+      homepage.name: "Unifi Controller"
+      homepage.weight: "-5"
+      homepage.widget.fields: "[\"uptime\", \"wan\", \"wlan_users\"]"
+      homepage.widget.password: ${UNIFI_PASSWORD}
+      homepage.widget.type: "unifi"
+      homepage.widget.url: "https://wireless.lab.drake.cloud"
+      homepage.widget.username: ${UNIFI_USER}
+
+    ports:
+      - "10001:10001/udp"
+      - "3478:3478/udp"
+      - "6789:6789/tcp"
+      - "8080:8080/tcp"
+      - "8081:8081/tcp"
+      - "8443:8443/tcp"
+      - "8843:8844/tcp"
+      - "8880:8880/tcp"
+
+    volumes:
+      - $CONTAINER_APPS_DIR/unifi:/config
+
+    environment:
+      TZ: ${TZ}
+      PGID: ${PGID}
+      PUID: ${PUID}
+      MONGO_USER: ${MONGO_USER}
+      MONGO_PASS: ${MONGO_PASS}
+      MONGO_HOST: ${MONGO_HOST}
+      MONGO_PORT: ${MONGO_PORT}
+      MONGO_DBNAME: ${MONGO_DBNAME}
+
+    restart: unless-stopped
+
+  unifi-db:
+    image: mongo:4.4.26
+    container_name: unifi-db
+  
+    volumes:
+      - $CONTAINER_APPS_DIR/unifi-db/db:/data/db
+      - $CONTAINER_APPS_DIR/unifi-db/mongo-init/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+
+    restart: unless-stopped

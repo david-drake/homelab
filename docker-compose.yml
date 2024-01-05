@@ -4,6 +4,7 @@
 include:
   - path:
       - ${INCLUDE_PATH}/portainer/docker-compose.yml
+    env_file: ${INCLUDE_PATH}/portainer/.env
 
   - path:
       - ${INCLUDE_PATH}/watchtower/docker-compose.yml
@@ -24,3 +25,20 @@ include:
   - path:
       - ${INCLUDE_PATH}/npm/docker-compose.yml
     env_file: ${INCLUDE_PATH}/npm/.env
+
+  - path:
+      - ${INCLUDE_PATH}/homepage/docker-compose.yml
+    env_file: ${INCLUDE_PATH}/homepage/.env
+
+  - path:
+      - ${INCLUDE_PATH}/netboot/docker-compose.yml
+    env_file: ${INCLUDE_PATH}/netboot/.env
+
+  - path:
+      - ${INCLUDE_PATH}/speedtest/docker-compose.yml
+    env_file: ${INCLUDE_PATH}/speedtest/.env
+
+  - path:
+      - ${INCLUDE_PATH}/unifi/docker-compose.yml
+    env_file: ${INCLUDE_PATH}/unifi/.env
+

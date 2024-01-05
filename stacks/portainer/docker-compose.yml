@@ -27,7 +27,7 @@ services:
       - "/var/run/docker.sock:/var/run/docker.sock"
       - $CONTAINER_APPS_DIR/portainer:/data
 
-    restart: unless-stopped
+    restart: always
 
     environment:
       TZ: ${TZ}

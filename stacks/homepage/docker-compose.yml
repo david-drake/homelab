@@ -1,0 +1,19 @@
+version: "3"
+name: homepage
+
+services:
+  homepage:
+    container_name: homepage
+    image: ghcr.io/gethomepage/homepage:latest
+
+    volumes:
+      - $CONTAINER_APPS_DIR/homepage:/app/config
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+    ports:
+      - "3001:3000/tcp"
+
+    environment:
+      TZ: ${TZ}
+
+    restart: unless-stopped
