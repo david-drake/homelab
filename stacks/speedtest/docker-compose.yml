@@ -33,6 +33,8 @@ services:
       homepage.href: "https://speedtest-tracker.lab.drake.cloud"
       homepage.icon: "librespeed.png"
       homepage.name: "Speed Test History"
+      homepage.widget.type: "speedtest"
+      homepage.widget.url: "https://speedtest-tracker.lab.drake.cloud"
 
     ports:
       - "8082:80/tcp"
