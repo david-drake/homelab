@@ -20,7 +20,7 @@ services:
     volumes:
       - $CONTAINER_APPS_DIR/plex/transcode:/transcode
       - $CONTAINER_APPS_DIR/plex:/config
-      - $MEDIA_DIR:/data
+      - $MEDIA_DIR/media:/data
 
     devices:
       - "/dev/dri:/dev/dri"

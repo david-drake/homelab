@@ -21,7 +21,7 @@ services:
 
     volumes:
       - $CONTAINER_APPS_DIR/sonarr:/config
-      - $MEDIA_DIR/tv:/tv
+      - $MEDIA_DIR/media/tv:/tv
       - $MEDIA_DIR/torrent-complete/tv:/completed/tv
       - $MEDIA_DIR/torrent-dl/tv:/downloads
 
@@ -51,7 +51,7 @@ services:
 
     volumes:
       - $CONTAINER_APPS_DIR/radarr:/config
-      - $MEDIA_DIR/movies:/movies
+      - $MEDIA_DIR/media/movies:/movies
       - $MEDIA_DIR/torrent-complete/movies:/completed/movies
       - $MEDIA_DIR/torrent-dl/movies:/downloads
 
@@ -111,8 +111,8 @@ services:
 
     volumes:
       - $CONTAINER_APPS_DIR/bazarr:/config
-      - $MEDIA_DIR/tv:/tv
-      - $MEDIA_DIR/movies:/movies
+      - $MEDIA_DIR/media/tv:/tv
+      - $MEDIA_DIR/media/movies:/movies
 
     environment:
       TZ: ${TZ}
@@ -141,8 +141,8 @@ services:
 
     volumes:
       - $CONTAINER_APPS_DIR/readarr:/config
-      - $MEDIA_DIR/audiobooks:/audiobooks
-      - $MEDIA_DIR/books:/books
+      - $MEDIA_DIR/media/audiobooks:/audiobooks
+      - $MEDIA_DIR/media/books:/books
       - $MEDIA_DIR/torrent-complete/movies:/completed/movies
       - $MEDIA_DIR/torrent-dl/audiobooks:/downloads-audiobooks
       - $MEDIA_DIR/torrent-dl/books:/downloads-books
