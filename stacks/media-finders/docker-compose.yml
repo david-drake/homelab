@@ -23,7 +23,7 @@ services:
       - $CONTAINER_APPS_DIR/sonarr:/config
       - $MEDIA_DIR/media/tv:/tv
       - $MEDIA_DIR/torrent-complete/tv:/completed/tv
-      - $MEDIA_DIR/torrent-dl/tv:/downloads
+      - $MEDIA_DIR/torrent-dl:/downloads
 
     environment:
       TZ: ${TZ}
@@ -54,7 +54,7 @@ services:
       - $MEDIA_DIR/media/movies:/movies
       - $MEDIA_DIR/media/cartoons:/cartoons
       - $MEDIA_DIR/torrent-complete/movies:/completed/movies
-      - $MEDIA_DIR/torrent-dl/movies:/downloads
+      - $MEDIA_DIR/torrent-dl:/downloads
 
     environment:
       TZ: ${TZ}
