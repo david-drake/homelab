@@ -16,7 +16,7 @@ services:
       homepage.weight: "-100"
       homepage.widget.type: "portainer"
       homepage.widget.url: "https://portainer.lab.drake.cloud"
-      homepage.widget.env: "1"
+      homepage.widget.env: ${PORTAINER_ENV}
       homepage.widget.key: ${PORTAINER_API_KEY}
 
     ports:
