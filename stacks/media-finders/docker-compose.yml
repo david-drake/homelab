@@ -52,6 +52,7 @@ services:
     volumes:
       - $CONTAINER_APPS_DIR/radarr:/config
       - $MEDIA_DIR/media/movies:/movies
+      - $MEDIA_DIR/media/cartoons:/cartoons
       - $MEDIA_DIR/torrent-complete/movies:/completed/movies
       - $MEDIA_DIR/torrent-dl/movies:/downloads
 
