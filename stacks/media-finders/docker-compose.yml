@@ -210,5 +210,6 @@ services:
       TZ: ${TZ}
       PGID: ${PGID}
       PUID: ${PUID}
+      WEBUI_PORT: ${QBITTORRENT_WEB_UI_PORT}
 
     restart: unless-stopped
