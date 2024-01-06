@@ -35,6 +35,7 @@ services:
       PLEX_UID: ${PLEX_UID}
       hostname: ${PLEX_HOSTNAME}
       ALLOWED_NETWORKS: ${PLEX_ALLOWED_NETWORKS}
+      VERSION: ${PLEX_VERSION}
 
     restart: always
 
