@@ -175,7 +175,7 @@ services:
       - "5055:5055/tcp"
 
     volumes:
-      - $CONTAINER_APPS_DIR/overseerr:/app/config
+      - $CONTAINER_APPS_DIR/overseerr:/config
 
     environment:
       TZ: ${TZ}
