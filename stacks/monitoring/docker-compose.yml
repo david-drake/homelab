@@ -20,7 +20,7 @@ services:
       homepage.weight: "-3"
       homepage.widget.type: "uptimekuma"
       homepage.widget.url: "https://uptime.lab.drake.cloud"
-      homepage.widget.slug: "statuspageslug"
+      homepage.widget.slug: "health"
 
     ports:
       - '3002:3001'
