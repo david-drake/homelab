@@ -1,0 +1,32 @@
+version: "3"
+name: monitoring
+
+services:
+  uptime-kuma:
+
+    container_name: "uptime-kuma"
+
+    environment:
+      - TZ=${TZ}
+
+    image: "louislam/uptime-kuma:latest"
+
+    labels:
+      homepage.description: "Uptime Monitor"
+      homepage.group: "Infrastructure"
+      homepage.icon: "uptime-kuma.svg"
+      homepage.name: "Uptime Kuma"
+      homepage.href: "https://uptime.lab.drake.cloud"
+      homepage.weight: "-3"
+      homepage.widget.type: "uptimekuma"
+      homepage.widget.url: "https://uptime.lab.drake.cloud"
+      homepage.widget.slug: "statuspageslug"
+
+    ports:
+      - '3001:3001'
+
+    restart: "always"
+
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - $CONTAINER_APPS_DIR/uptime-kuma:/app/data
