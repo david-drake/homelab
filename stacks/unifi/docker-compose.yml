@@ -46,10 +46,11 @@ services:
 
   unifi-db:
     image: mongo:4.4.26
-    container_name: unifi-db
+    container_name: unifi-controller-db
   
     volumes:
       - $CONTAINER_APPS_DIR/unifi-db/db:/data/db
-      - $CONTAINER_APPS_DIR/unifi-db/mongo-init/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+      - $CONTAINER_APPS_DIR/unifi-db/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+      - $CONTAINER_APPS_DIR/unifi-db/dbcfg:/data/configdb
 
     restart: unless-stopped
