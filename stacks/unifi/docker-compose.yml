@@ -14,10 +14,10 @@ services:
       homepage.name: "Unifi Controller"
       homepage.weight: "-5"
       homepage.widget.fields: "[\"uptime\", \"wan\", \"wlan_users\"]"
-      homepage.widget.password: ${UNIFI_PASSWORD}
+      homepage.widget.password: ${HOMEPAGE_UNIFI_PASSWORD}
       homepage.widget.type: "unifi"
       homepage.widget.url: "https://wireless.lab.drake.cloud"
-      homepage.widget.username: ${UNIFI_USER}
+      homepage.widget.username: ${HOMEPAGE_UNIFI_USER}
 
     ports:
       - "10001:10001/udp"
