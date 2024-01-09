@@ -76,3 +76,11 @@ services:
 
     volumes:
       - $CONTAINER_APPS_DIR/npm/data/logs:/opt/log
+
+    labels:
+      homepage.description: "Web Server Logs"
+      homepage.name: "NPM Logs"
+      homepage.group: "Infrastructure"
+      homepage.href: "https://proxy-logs.lab.drake.cloud"
+      homepage.icon: "mdi:file-code-outline"
+
