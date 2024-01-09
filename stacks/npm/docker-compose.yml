@@ -82,5 +82,5 @@ services:
       homepage.name: "NPM Logs"
       homepage.group: "Infrastructure"
       homepage.href: "https://proxy-logs.lab.drake.cloud"
-      homepage.icon: "mdi:file-code-outline"
+      homepage.icon: "mdi-file-code-outline"
 
