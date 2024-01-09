@@ -73,6 +73,7 @@ services:
       TZ: ${TZ}
       PGID: ${PGID}
       PUID: ${PUID}
+      SKIP_ARCHIVED_LOGS: ${NPM_LOGS_SKIP_ARCHIVED_LOGS}
 
     volumes:
       - $CONTAINER_APPS_DIR/npm/data/logs:/opt/log
