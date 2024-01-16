@@ -12,9 +12,6 @@ services:
       homepage.href: "https://nextcloud.lab.drake.cloud"
       homepage.icon: "nextcloud.svg"
       homepage.name: "Nextcloud"
-      homepage.widget.key: ${NEXTCLOUD_API_KEY}
-      homepage.widget.type: "nextcloud"
-      homepage.widget.url: "https://nextcloud.lab.drake.cloud"
 
     ports:
       - "8086:80/tcp"
