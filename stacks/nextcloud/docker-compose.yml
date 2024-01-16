@@ -39,9 +39,13 @@ services:
 
   nextcloud-db:
     image: mariadb:10.6
+    container_name: nextcloud-db
+
     command: --transaction-isolation=READ-COMMITTED --log-bin=binlog --binlog-format=ROW
+
     volumes:
       - $CONTAINER_APPS_DIR/nextcloud-db:/var/lib/mysql
+
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
