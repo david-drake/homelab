@@ -12,6 +12,7 @@ services:
       homepage.href: "https://nextcloud.lab.drake.cloud"
       homepage.icon: "nextcloud.svg"
       homepage.name: "Nextcloud"
+      homepage.weight: "1"
 
     ports:
       - "8086:80/tcp"
