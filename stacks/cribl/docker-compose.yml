@@ -1,0 +1,28 @@
+version: "3"
+name: cribl
+
+services:
+  cribl:
+    container_name: cribl
+    image: cribl/cribl:latest
+
+    labels:
+      homepage.description: "Log Enrichment / Transformation"
+      homepage.group: "Infrastructure"
+      homepage.href: "https://cribl.lab.drake.cloud"
+      homepage.icon: "mdi-arrow-right-drop-circle-outline"
+      homepage.name: "Cribl"
+
+    ports:
+      - "9000:9000/tcp"
+      - "8088:8088/tcp"
+
+    volumes:
+      - $CONTAINER_APPS_DIR/cribl:/opt/cribl/config-volume
+
+    environment:
+      TZ: ${TZ}
+      PGID: ${PGID}
+      PUID: ${PUID}
+
+    restart: unless-stopped
