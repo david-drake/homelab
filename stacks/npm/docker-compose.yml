@@ -48,7 +48,7 @@ services:
         splunk-format: ${LOG_SPLUNK_FORMAT}
         splunk-source: npm
         tag: ${LOG_TAG}
-        splunk-verify-connection: false
+        splunk-verify-connection: "false"
 
   npm_db:
     container_name: npm_db
