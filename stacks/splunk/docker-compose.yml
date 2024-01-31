@@ -1,0 +1,32 @@
+version: "3"
+name: splunk
+
+services:
+  splunk:
+    container_name: splunk
+    image: splunk/splunk:latest
+
+    labels:
+      homepage.description: "Log Management"
+      homepage.group: "Infrastructure"
+      homepage.href: "https://splunk.lab.drake.cloud"
+      homepage.icon: "splunk.svg"
+      homepage.name: "Splunk"
+
+    ports:
+      - "8001/8000/tcp"
+      - "8089:8089/tcp"
+
+    volumes:
+      - $CONTAINER_APPS_DIR/splunk/etc:/opt/splunk/etc
+      - $CONTAINER_APPS_DIR/splunk/var:/opt/splunk/var
+
+    environment:
+      TZ: ${TZ}
+      PGID: ${PGID}
+      PUID: ${PUID}
+      SPLUNK_START_ARGS: ${SPLUNK_START_ARGS}
+      SPLUNK_PASSWORD: ${SPLUNK_PASSWORD}
+      DEBUG: ${SPLUNK_DEBUG}
+
+    restart: unless-stopped
