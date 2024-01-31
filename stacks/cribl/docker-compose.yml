@@ -16,7 +16,7 @@ services:
     ports:
       - "9000:9000/tcp"
       - "8088:8088/tcp"
-      - "514:514/udp"
+      - "9514:9514/udp"
 
     volumes:
       - $CONTAINER_APPS_DIR/cribl:${CRIBL_VOLUME_DIR}
