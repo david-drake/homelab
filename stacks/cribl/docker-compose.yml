@@ -18,7 +18,7 @@ services:
       - "8088:8088/tcp"
 
     volumes:
-      - $CONTAINER_APPS_DIR/cribl:/opt/cribl/
+      - $CONTAINER_APPS_DIR/cribl:${CRIBL_VOLUME_DIR}
 
     logging:
       driver: ${LOG_DRIVER}
@@ -34,5 +34,6 @@ services:
       TZ: ${TZ}
       PGID: ${PGID}
       PUID: ${PUID}
+      CRIBL_VOLUME_DIR: ${CRIBL_VOLUME_DIR}
 
     restart: unless-stopped
