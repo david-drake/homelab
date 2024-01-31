@@ -73,6 +73,8 @@ services:
         splunk-format: ${LOG_SPLUNK_FORMAT}
         splunk-source: npm-db
         tag: ${LOG_TAG}
+        splunk-verify-connection: "false"
+
 
     volumes:
       - $CONTAINER_APPS_DIR/npm_db:/var/lib/mysql
@@ -111,3 +113,5 @@ services:
         splunk-format: ${LOG_SPLUNK_FORMAT}
         splunk-source: npm-logs
         tag: ${LOG_TAG}
+        splunk-verify-connection: "false"
+
