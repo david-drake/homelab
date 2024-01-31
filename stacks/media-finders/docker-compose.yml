@@ -31,6 +31,7 @@ services:
         splunk-url: ${LOG_SPLUNK_URL}
         splunk-token: ${LOG_SPLUNK_TOKEN}
         splunk-format: ${LOG_SPLUNK_FORMAT}
+        splunk-verify-connection: ${LOG_SPLUNK_VERIFY_CONNECTION}
         splunk-source: sonarr
         tag: ${LOG_TAG}
 
@@ -53,6 +54,7 @@ services:
       homepage.name: "Radarr"
       homepage.widget.key: ${RADARR_API_KEY}
       homepage.widget.type: "radarr"
+      splunk-verify-connection: ${LOG_SPLUNK_VERIFY_CONNECTION}
       homepage.widget.url: "https://movies.lab.drake.cloud"
 
     ports:
@@ -71,6 +73,7 @@ services:
         splunk-url: ${LOG_SPLUNK_URL}
         splunk-token: ${LOG_SPLUNK_TOKEN}
         splunk-format: ${LOG_SPLUNK_FORMAT}
+        splunk-verify-connection: ${LOG_SPLUNK_VERIFY_CONNECTION}
         splunk-source: radarr
         tag: ${LOG_TAG}
 
@@ -108,6 +111,7 @@ services:
         splunk-url: ${LOG_SPLUNK_URL}
         splunk-token: ${LOG_SPLUNK_TOKEN}
         splunk-format: ${LOG_SPLUNK_FORMAT}
+        splunk-verify-connection: ${LOG_SPLUNK_VERIFY_CONNECTION}
         splunk-source: prowlarr
         tag: ${LOG_TAG}
 
@@ -148,6 +152,7 @@ services:
         splunk-url: ${LOG_SPLUNK_URL}
         splunk-token: ${LOG_SPLUNK_TOKEN}
         splunk-format: ${LOG_SPLUNK_FORMAT}
+        splunk-verify-connection: ${LOG_SPLUNK_VERIFY_CONNECTION}
         splunk-source: bazarr
         tag: ${LOG_TAG}
 
@@ -191,6 +196,7 @@ services:
         splunk-url: ${LOG_SPLUNK_URL}
         splunk-token: ${LOG_SPLUNK_TOKEN}
         splunk-format: ${LOG_SPLUNK_FORMAT}
+        splunk-verify-connection: ${LOG_SPLUNK_VERIFY_CONNECTION}
         splunk-source: readarr
         tag: ${LOG_TAG}
 
@@ -229,6 +235,7 @@ services:
         splunk-url: ${LOG_SPLUNK_URL}
         splunk-token: ${LOG_SPLUNK_TOKEN}
         splunk-format: ${LOG_SPLUNK_FORMAT}
+        splunk-verify-connection: ${LOG_SPLUNK_VERIFY_CONNECTION}
         splunk-source: overseerr
         tag: ${LOG_TAG}
 
@@ -267,6 +274,7 @@ services:
         splunk-url: ${LOG_SPLUNK_URL}
         splunk-token: ${LOG_SPLUNK_TOKEN}
         splunk-format: ${LOG_SPLUNK_FORMAT}
+        splunk-verify-connection: ${LOG_SPLUNK_VERIFY_CONNECTION}
         splunk-source: qbittorrent
         tag: ${LOG_TAG}
 
