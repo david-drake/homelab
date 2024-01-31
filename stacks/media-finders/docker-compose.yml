@@ -25,6 +25,15 @@ services:
       - $MEDIA_DIR/torrent-complete/tv:/completed/tv
       - $MEDIA_DIR/torrent-dl:/downloads
 
+    logging:
+      driver: ${LOG_DRIVER}
+      options:
+        splunk-url: ${LOG_SPLUNK_URL}
+        splunk-token: ${LOG_SPLUNK_TOKEN}
+        splunk-format: ${LOG_SPLUNK_FORMAT}
+        splunk-source: sonarr
+        tag: ${LOG_TAG}
+
     environment:
       TZ: ${TZ}
       PGID: ${PGID}
@@ -56,6 +65,15 @@ services:
       - $MEDIA_DIR/torrent-complete/movies:/completed/movies
       - $MEDIA_DIR/torrent-dl:/downloads
 
+    logging:
+      driver: ${LOG_DRIVER}
+      options:
+        splunk-url: ${LOG_SPLUNK_URL}
+        splunk-token: ${LOG_SPLUNK_TOKEN}
+        splunk-format: ${LOG_SPLUNK_FORMAT}
+        splunk-source: radarr
+        tag: ${LOG_TAG}
+
     environment:
       TZ: ${TZ}
       PGID: ${PGID}
@@ -83,6 +101,15 @@ services:
 
     volumes:
       - $CONTAINER_APPS_DIR/prowlarr:/config
+
+    logging:
+      driver: ${LOG_DRIVER}
+      options:
+        splunk-url: ${LOG_SPLUNK_URL}
+        splunk-token: ${LOG_SPLUNK_TOKEN}
+        splunk-format: ${LOG_SPLUNK_FORMAT}
+        splunk-source: prowlarr
+        tag: ${LOG_TAG}
 
     environment:
       TZ: ${TZ}
@@ -114,6 +141,15 @@ services:
       - $CONTAINER_APPS_DIR/bazarr:/config
       - $MEDIA_DIR/media/tv:/tv
       - $MEDIA_DIR/media/movies:/movies
+
+    logging:
+      driver: ${LOG_DRIVER}
+      options:
+        splunk-url: ${LOG_SPLUNK_URL}
+        splunk-token: ${LOG_SPLUNK_TOKEN}
+        splunk-format: ${LOG_SPLUNK_FORMAT}
+        splunk-source: bazarr
+        tag: ${LOG_TAG}
 
     environment:
       TZ: ${TZ}
@@ -149,6 +185,15 @@ services:
       - $MEDIA_DIR/torrent-dl/books:/downloads-books
       - $MEDIA_DIR/torrent-dl:/downloads
 
+    logging:
+      driver: ${LOG_DRIVER}
+      options:
+        splunk-url: ${LOG_SPLUNK_URL}
+        splunk-token: ${LOG_SPLUNK_TOKEN}
+        splunk-format: ${LOG_SPLUNK_FORMAT}
+        splunk-source: readarr
+        tag: ${LOG_TAG}
+
     environment:
       TZ: ${TZ}
       PGID: ${PGID}
@@ -178,6 +223,15 @@ services:
     volumes:
       - $CONTAINER_APPS_DIR/overseerr:/config
 
+    logging:
+      driver: ${LOG_DRIVER}
+      options:
+        splunk-url: ${LOG_SPLUNK_URL}
+        splunk-token: ${LOG_SPLUNK_TOKEN}
+        splunk-format: ${LOG_SPLUNK_FORMAT}
+        splunk-source: overseerr
+        tag: ${LOG_TAG}
+
     environment:
       TZ: ${TZ}
       PGID: ${PGID}
@@ -206,6 +260,15 @@ services:
     volumes:
       - $CONTAINER_APPS_DIR/qbittorrent/config:/config
       - $MEDIA_DIR/torrent-dl:/downloads
+
+    logging:
+      driver: ${LOG_DRIVER}
+      options:
+        splunk-url: ${LOG_SPLUNK_URL}
+        splunk-token: ${LOG_SPLUNK_TOKEN}
+        splunk-format: ${LOG_SPLUNK_FORMAT}
+        splunk-source: qbittorrent
+        tag: ${LOG_TAG}
 
     environment:
       TZ: ${TZ}
