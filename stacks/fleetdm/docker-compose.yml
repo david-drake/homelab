@@ -74,7 +74,7 @@ services:
         splunk-source: fleetdm-redis
         tag: ${LOG_TAG}
   
-  fleet-myql:
+  fleet-mysql:
     container_name: fleet-mysql
     image: mysql:8.4
 
