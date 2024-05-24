@@ -14,7 +14,7 @@ services:
       homepage.name: "FleetDM"
 
     ports:
-      - "8091:8412/tcp"
+      - "8091:8080/tcp"
 
     command: sh -c "/usr/bin/fleet prepare db --no-prompt && /usr/bin/fleet serve"
 
