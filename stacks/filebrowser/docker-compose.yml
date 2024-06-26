@@ -12,6 +12,7 @@ services:
       homepage.href: "https://filebrowser.lab.drake.cloud"
       homepage.icon: "filebrowser.svg"
       homepage.name: "Filebrowser"
+      homepage.weight: "1"
 
     ports:
       - "8092:80/tcp"
