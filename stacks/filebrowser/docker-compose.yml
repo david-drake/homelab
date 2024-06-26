@@ -18,7 +18,8 @@ services:
 
     volumes:
       - $CONTAINER_APPS_DIR/filebrowser/database/filebrowser.db:/database/filebrowser.db
-      - $MEDIA_DIR/media:/srv
+      - $CONTAINER_APPS_DIR/filebrowser/settings/settings.json:/config/settings.json
+      - $MEDIA_DIR/media:/srv/media
 
     logging:
       driver: ${LOG_DRIVER}
