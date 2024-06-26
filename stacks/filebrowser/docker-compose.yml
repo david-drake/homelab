@@ -14,7 +14,7 @@ services:
       homepage.name: "Filebrowser"
 
     ports:
-      - "8092:8082/tcp"
+      - "8092:80/tcp"
 
     volumes:
       - $CONTAINER_APPS_DIR/filebrowser/database:/database.db
