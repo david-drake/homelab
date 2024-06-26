@@ -17,7 +17,7 @@ services:
       - "8092:80/tcp"
 
     volumes:
-      - $CONTAINER_APPS_DIR/filebrowser/database/filebrowser.db:/database.db
+      - $CONTAINER_APPS_DIR/filebrowser/database/filebrowser.db:/database/filebrowser.db
       - $MEDIA_DIR/media:/srv
 
     logging:
