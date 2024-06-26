@@ -19,7 +19,7 @@ services:
     volumes:
       - $CONTAINER_APPS_DIR/filebrowser/database/filebrowser.db:/database/filebrowser.db
       - $CONTAINER_APPS_DIR/filebrowser/settings/settings.json:/config/settings.json
-      - $MEDIA_DIR/media:/srv/media
+      - $MEDIA_DIR:/srv/media
       - $NAS_DAVID_DIR:/srv/david
 
     logging:
