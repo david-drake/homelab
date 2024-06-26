@@ -63,6 +63,9 @@ services:
     expose:
       - 6379
 
+    depends_on:
+      - fleet-mysql
+      
     logging:
       driver: ${LOG_DRIVER}
       options:
