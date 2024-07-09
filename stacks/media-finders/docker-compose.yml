@@ -296,7 +296,7 @@ services:
       homepage.href: "https://flaresolverr.lab.drake.cloud"
       homepage.icon: "flaresolverr.svg"
       homepage.name: "Flaresolverr"
-      homepage.weight: "0"
+      homepage.weight: "2"
 
     ports:
       - "8191:8191/tcp"
