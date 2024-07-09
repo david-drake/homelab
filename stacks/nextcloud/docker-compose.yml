@@ -29,6 +29,7 @@ services:
 
     volumes:
       - $MEDIA_DIR/media/nextcloud:/media
+      - $NAS_DAVID_DIR:/nas-david
       - $CONTAINER_APPS_DIR/nextcloud:/var/www/html
 
     environment:
