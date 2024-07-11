@@ -7,7 +7,7 @@ services:
     image: ghcr.io/zitadel/zitadel:latest
 
     labels:
-      homepage.description: "Centralized Authetication"
+      homepage.description: "Centralized Authentication"
       homepage.group: "Infrastructure"
       homepage.href: "https://zitadel.lab.drake.cloud"
       homepage.icon: "zitadel.svg"
@@ -16,7 +16,7 @@ services:
     ports:
       - "8093:8080/tcp"
 
-    command: 'start-from-init --masterkey ${ZITADEL_MASTER_KEY} --tlsMode disabled'
+    command: 'start-from-init --masterkeyFromEnv --tlsMode disabled'
 
     volumes:
       - $CONTAINER_APPS_DIR/zitadel:/config
