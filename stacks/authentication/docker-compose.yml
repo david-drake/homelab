@@ -1,0 +1,74 @@
+version: "3"
+name: authentication
+
+services:
+  zitadel:
+    container_name: zitadel
+    image: ghcr.io/zitadel/zitadel:latest
+
+    labels:
+      homepage.description: "Centralized Authetication"
+      homepage.group: "Infrastructure"
+      homepage.href: "https://zitadel.lab.drake.cloud"
+      homepage.icon: "zitadel.svg"
+      homepage.name: "Zitadel"
+
+    ports:
+      - "8093:8080/tcp"
+
+    command: 'start-from-init --masterkey ${ZITADEL_MASTER_KEY} --tlsMode disabled'
+
+    volumes:
+      - $CONTAINER_APPS_DIR/zitadel:/config
+
+    logging:
+      driver: ${LOG_DRIVER}
+      options:
+        splunk-url: ${LOG_SPLUNK_URL}
+        splunk-token: ${LOG_SPLUNK_TOKEN}
+        splunk-format: ${LOG_SPLUNK_FORMAT}
+        splunk-verify-connection: ${LOG_SPLUNK_VERIFY_CONNECTION}
+        splunk-source: zitadel
+        tag: ${LOG_TAG}
+
+    environment:
+      TZ: ${TZ}
+      PGID: ${PGID}
+      PUID: ${PUID}
+      ZITADEL_DATABASE_POSTGRES_HOST: ${ZITADEL_DATABASE_POSTGRES_HOST}
+      ZITADEL_DATABASE_POSTGRES_PORT: ${ZITADEL_DATABASE_POSTGRES_PORT}
+      ZITADEL_DATABASE_POSTGRES_DATABASE: ${ZITADEL_DATABASE_POSTGRES_DATABASE}
+      ZITADEL_DATABASE_POSTGRES_USER_USERNAME: ${ZITADEL_DATABASE_POSTGRES_DATABASE}
+      ZITADEL_DATABASE_POSTGRES_USER_PASSWORD: ${ZITADEL_DATABASE_POSTGRES_DATABASE}
+      ZITADEL_DATABASE_POSTGRES_USER_SSL_MODE: ${ZITADEL_DATABASE_POSTGRES_DATABASE}
+      ZITADEL_DATABASE_POSTGRES_ADMIN_USERNAME: ${ZITADEL_DATABASE_POSTGRES_DATABASE}
+      ZITADEL_DATABASE_POSTGRES_ADMIN_PASSWORD: ${ZITADEL_DATABASE_POSTGRES_DATABASE}
+      ZITADEL_DATABASE_POSTGRES_ADMIN_SSL_MODE: ${ZITADEL_DATABASE_POSTGRES_DATABASE}
+      ZITADEL_EXTERNALSECURE: ${ZITADEL_DATABASE_POSTGRES_DATABASE}
+
+    depends_on:
+      zitadel-db:
+        condition: 'service_healthy'
+
+    restart: unless-stopped
+
+  zitadel-db:
+    container_name: zitadel-db
+    image: postgres:16-alpine
+
+    environment:
+      POSTGRES_USER: ${ZITADEL_DATABASE_POSTGRES_DATABASE}
+      POSTGRES_PASSWORD: ${ZITADEL_DATABASE_POSTGRES_ADMIN_PASSWORD}
+      POSTGRES_DB: ${ZITADEL_DATABASE_POSTGRES_DATABASE}
+
+    volumes:
+      - $CONTAINER_APPS_DIR/zitadel-db:/var/lib/postgresql/data
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-d", "zitadel", "-U", "postgres"]
+      interval: '10s'
+      timeout: '30s'
+      retries: 5
+      start_period: '20s'
+
+    restart: 'always'
