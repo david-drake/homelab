@@ -5,7 +5,7 @@ services:
   tooljet:
 
     container_name: tooljet
-    image: tooljet/tooljet:EE-LTS-latest
+    image: tooljet/tooljet-ce:latest
 
     labels:
       homepage.description: "Build Internal Apps"
