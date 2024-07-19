@@ -88,7 +88,8 @@ services:
       TZ: ${TZ}
       PGID: ${PGID}
       PUID: ${PUID}
-      PGRST_SERVER_PORT: ${PGRST_SERVER_PORT}
+      PGRST_HOST: ${PGRST_HOST}
+      PGRST_DB_URI: ${PGRST_DB_URI}
 
     logging:
       driver: ${LOG_DRIVER}
