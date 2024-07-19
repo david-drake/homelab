@@ -62,8 +62,8 @@ services:
       TZ: ${TZ}
       PGID: ${PGID}
       PUID: ${PUID}
-      POSTGRES_USER: ${PG_USER}
-      POSTGRES_PASSWORD: ${PG_PASS}
+      PG_USER: ${PG_USER}
+      PG_PASS: ${PG_PASS}
 
     logging:
       driver: ${LOG_DRIVER}
