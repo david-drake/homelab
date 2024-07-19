@@ -84,7 +84,10 @@ services:
       - tooljet-db
 
     environment:
-      - PGRST_SERVER_PORT: ${PGRST_SERVER_PORT}
+      TZ: ${TZ}
+      PGID: ${PGID}
+      PUID: ${PUID}
+      PGRST_SERVER_PORT: ${PGRST_SERVER_PORT}
 
     logging:
       driver: ${LOG_DRIVER}
