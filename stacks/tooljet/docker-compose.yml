@@ -94,6 +94,7 @@ services:
       REDIS_HOST: ${REDIS_HOST}
       REDIS_USER: ${REDIS_USER}
       REDIS_PASSWORD: ${REDIS_PASSWORD}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
 
     logging:
       driver: ${LOG_DRIVER}
