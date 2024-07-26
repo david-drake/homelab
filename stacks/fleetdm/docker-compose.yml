@@ -65,6 +65,8 @@ services:
 
     depends_on:
       - fleet-mysql
+
+    restart: unless-stopped
       
     logging:
       driver: ${LOG_DRIVER}
@@ -95,6 +97,8 @@ services:
       MYSQL_DATABASE: ${FLEET_MYSQL_DATABASE}
       MYSQL_USER: ${FLEET_MYSQL_USERNAME}
       MYSQL_PASSWORD: ${FLEET_MYSQL_PASSWORD}
+
+    restart: unless-stopped
 
     logging:
       driver: ${LOG_DRIVER}
