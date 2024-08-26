@@ -1,0 +1,43 @@
+version: "3"
+name: audiobooks
+
+services:
+  audiobookshelf:
+    container_name: audiobookshelf
+    image: ghcr.io/advplyr/audiobookshelf:latest
+
+    labels:
+      homepage.description: "Audiobook and Podcast"
+      homepage.group: "Media"
+      homepage.href: "https://audiobookshelf.lab.drake.cloud"
+      homepage.icon: "audiobookshelf.svg"
+      homepage.name: "Audiobookshelf"
+      homepage.widget.key: ${AUDIOBOOKSHELF_API_KEY}
+      homepage.widget.type: "audiobookshelf"
+      homepage.widget.url: "https://audiobookshelf.lab.drake.cloud"
+
+    ports:
+      - "8093:80/tcp"
+
+    volumes:
+      - $CONTAINER_APPS_DIR/audiobookshelf/config:/config
+      - $CONTAINER_APPS_DIR/audiobookshelf/metadata:/metadata
+      - $MEDIA_DIR/media/audiobooks:/audiobooks
+      - $MEDIA_DIR/media/podcasts:/podcasts
+
+    logging:
+      driver: ${LOG_DRIVER}
+      options:
+        splunk-url: ${LOG_SPLUNK_URL}
+        splunk-token: ${LOG_SPLUNK_TOKEN}
+        splunk-format: ${LOG_SPLUNK_FORMAT}
+        splunk-verify-connection: ${LOG_SPLUNK_VERIFY_CONNECTION}
+        splunk-source: audiobookshelf
+        tag: ${LOG_TAG}
+
+    environment:
+      TZ: ${TZ}
+      PGID: ${PGID}
+      PUID: ${PUID}
+
+    restart: unless-stopped
