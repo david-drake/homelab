@@ -1,11 +1,4 @@
-#
-# WARNING: Make sure to use the docker-compose.yml of the current release:
-#
-# https://github.com/immich-app/immich/releases/latest/download/docker-compose.yml
-#
-# The compose file on main may not be compatible with the latest release.
-#
-
+version: "3"
 name: immich
 
 services:
@@ -31,6 +24,16 @@ services:
 
     healthcheck:
       disable: false
+
+    labels:
+      homepage.description: "Photo Manager"
+      homepage.group: "Media"
+      homepage.href: "https://photos.lab.drake.cloud"
+      homepage.icon: "immich.svg"
+      homepage.name: "Immich"
+      homepage.widget.key: ${IMMICH_API_KEY}
+      homepage.widget.type: "immich"
+      homepage.widget.url: "https://photos.lab.drake.cloud"
 
     logging:
       driver: ${LOG_DRIVER}
