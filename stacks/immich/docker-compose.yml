@@ -70,7 +70,7 @@ services:
 
   immich-db:
     container_name: immich-db
-    image: docker.io/tensorchord/pgvecto-rs:ppg14-v0.3.0
+    image: docker.io/tensorchord/pgvecto-rs:pg15-v0.3.0
 
     environment:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
