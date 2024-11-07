@@ -1,10 +1,9 @@
-version: "3"
 name: immich
 
 services:
   immich-server:
     container_name: immich-server
-    image: ghcr.io/immich-app/immich-server:latest
+    image: immich-server:latest
     # extends:
     #   file: hwaccel.transcoding.yml
     #   service: cpu # set to one of [nvenc, quicksync, rkmpp, vaapi, vaapi-wsl] for accelerated transcoding
@@ -52,7 +51,7 @@ services:
 
   immich-redis:
     container_name: immich-redis
-    image: docker.io/redis:alpine
+    image: redis:alpine
 
     healthcheck:
       test: redis-cli ping || exit 1
@@ -71,7 +70,7 @@ services:
 
   immich-db:
     container_name: immich-db
-    image: docker.io/tensorchord/pgvecto-rs:ppg14-v0.3.0
+    image: tensorchord/pgvecto-rs:ppg14-v0.3.0
 
     environment:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
