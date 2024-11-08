@@ -118,3 +118,31 @@ services:
         splunk-verify-connection: ${LOG_SPLUNK_VERIFY_CONNECTION}
         splunk-source: immich-db
         tag: ${LOG_TAG}
+
+  immich-ml:
+    container_name: immich-ml
+    # For hardware acceleration, add one of -[armnn, cuda, openvino] to the image tag.
+    # Example tag: ${IMMICH_VERSION:-release}-cuda
+
+    image: ghcr.io/immich-app/immich-machine-learning:release
+    # extends: # uncomment this section for hardware acceleration - see https://immich.app/docs/features/ml-hardware-acceleration
+    #   file: hwaccel.ml.yml
+    #   service: cpu # set to one of [armnn, cuda, openvino, openvino-wsl] for accelerated inference - use the `-wsl` version for WSL2 where applicable
+    volumes:
+      - $CONTAINER_APPS_DIR/immich/model-cache:/cache
+
+    restart: always
+
+    healthcheck:
+      disable: false
+
+    logging:
+      driver: ${LOG_DRIVER}
+      options:
+        splunk-url: ${LOG_SPLUNK_URL}
+        splunk-token: ${LOG_SPLUNK_TOKEN}
+        splunk-format: ${LOG_SPLUNK_FORMAT}
+        splunk-verify-connection: ${LOG_SPLUNK_VERIFY_CONNECTION}
+        splunk-source: immich-ml
+        tag: ${LOG_TAG}
+
