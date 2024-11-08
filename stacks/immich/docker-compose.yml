@@ -48,6 +48,7 @@ services:
       TZ: ${TZ}
       PGID: ${PGID}
       PUID: ${PUID}
+      REDIS_HOSTNAME: ${REDIS_HOSTNAME}
 
   immich-redis:
     container_name: immich-redis
