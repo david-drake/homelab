@@ -49,6 +49,7 @@ services:
       PGID: ${PGID}
       PUID: ${PUID}
       REDIS_HOSTNAME: ${REDIS_HOSTNAME}
+      DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
 
   immich-redis:
     container_name: immich-redis
