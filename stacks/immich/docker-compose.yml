@@ -32,6 +32,7 @@ services:
       homepage.icon: "immich.svg"
       homepage.name: "Immich"
       homepage.widget.key: ${IMMICH_API_KEY}
+      homepage.widget.version: "2"
       homepage.widget.type: "immich"
       homepage.widget.url: "https://photos.lab.drake.cloud"
 
