@@ -10,7 +10,7 @@ services:
       homepage.description: "Osquery - Fleet"
       homepage.group: "Infrastructure"
       homepage.href: "https://fleet.lab.drake.cloud"
-      homepage.icon: "https://fleetdm.com/images/press-kit/fleet-logo-white.svg"
+      homepage.icon: "https://cdn.worldvectorlogo.com/logos/osquery.svg"
       homepage.name: "Fleet - Osquery"
 
     ports:
