@@ -7,11 +7,11 @@ services:
     image: fleetdm/fleet:latest
 
     labels:
-      homepage.description: "OSQuery - FleetDM"
+      homepage.description: "Osquery - Fleet"
       homepage.group: "Infrastructure"
       homepage.href: "https://fleet.lab.drake.cloud"
-      homepage.icon: "mdi-shape-circle-plus"
-      homepage.name: "FleetDM"
+      homepage.icon: "https://fleetdm.com/images/press-kit/fleet-logo-white.svg"
+      homepage.name: "Fleet - Osquery"
 
     ports:
       - "8091:8080/tcp"
