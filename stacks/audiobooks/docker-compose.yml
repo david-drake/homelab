@@ -24,6 +24,7 @@ services:
       - $CONTAINER_APPS_DIR/audiobookshelf/metadata:/metadata
       - $MEDIA_DIR/media/audiobooks:/audiobooks
       - $MEDIA_DIR/media/podcasts:/podcasts
+      - $MEDIA_DIR/media:/data
 
     logging:
       driver: ${LOG_DRIVER}
