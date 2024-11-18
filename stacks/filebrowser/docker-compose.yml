@@ -22,6 +22,7 @@ services:
       - $CONTAINER_APPS_DIR/filebrowser/settings/settings.json:/config/settings.json
       - $MEDIA_DIR:/srv/media
       - $NAS_DAVID_DIR:/srv/david
+      - $MEDIA_DIR:/data
 
     logging:
       driver: ${LOG_DRIVER}
