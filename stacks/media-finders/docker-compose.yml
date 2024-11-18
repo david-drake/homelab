@@ -24,6 +24,7 @@ services:
       - $MEDIA_DIR/media/tv:/tv
       - $MEDIA_DIR/torrent-complete/tv:/completed/tv
       - $MEDIA_DIR/torrent-dl:/downloads
+      - $MEDIA_DIR:/data
 
     logging:
       driver: ${LOG_DRIVER}
@@ -66,6 +67,7 @@ services:
       - $MEDIA_DIR/media/cartoons:/cartoons
       - $MEDIA_DIR/torrent-complete/movies:/completed/movies
       - $MEDIA_DIR/torrent-dl:/downloads
+      - $MEDIA_DIR:/data
 
     logging:
       driver: ${LOG_DRIVER}
@@ -145,6 +147,7 @@ services:
       - $CONTAINER_APPS_DIR/bazarr:/config
       - $MEDIA_DIR/media/tv:/tv
       - $MEDIA_DIR/media/movies:/movies
+      - $MEDIA_DIR:/data
 
     logging:
       driver: ${LOG_DRIVER}
@@ -189,6 +192,7 @@ services:
       - $MEDIA_DIR/torrent-dl/audiobooks:/downloads-audiobooks
       - $MEDIA_DIR/torrent-dl/books:/downloads-books
       - $MEDIA_DIR/torrent-dl:/downloads
+      - $MEDIA_DIR:/data
 
     logging:
       driver: ${LOG_DRIVER}
@@ -267,6 +271,7 @@ services:
     volumes:
       - $CONTAINER_APPS_DIR/qbittorrent/config:/config
       - $MEDIA_DIR/torrent-dl:/downloads
+      - $MEDIA_DIR:/data
 
     logging:
       driver: ${LOG_DRIVER}
